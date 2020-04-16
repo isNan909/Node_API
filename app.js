@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
-const pool = require('./config');
+const pool = require('./configuration/config');
 
 const app = express();
 app.use(helmet());
