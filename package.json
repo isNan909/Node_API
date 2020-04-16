@@ -15,11 +15,11 @@
     "nodemon": "^2.0.3"
   },
   "dependencies": {
-    "helmet": "^3.22.0",
-    "node-postgres": "^0.1.4",
-    "pg-pool": "^3.1.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "morgan": "^1.10.0"
+    "helmet": "^3.22.0",
+    "morgan": "^1.10.0",
+    "node-postgres": "^0.1.4",
+    "pg": "^8.0.2"
   }
 }
