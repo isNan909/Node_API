@@ -16,6 +16,11 @@ const getFood = (req, res) => {
     if (error) {
       throw error;
     }
+
+pool.on('error', (err) => {
+  console.error('An idle client has experienced an error', err.stack)
+})
+
     res.status(200).json({
       status: 'sucess',
       requestTime: req.requestTime,
