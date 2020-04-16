@@ -14,9 +14,4 @@ app.get('/', function (req, res) {
   res.send('Express application working ...');
 });
 
-// Start server
-app.listen(process.env.PORT || 8080, () => {
-    console.log(`Server listening`)
-  })
-
 module.exports = app;
