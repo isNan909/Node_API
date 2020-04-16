@@ -16,11 +16,6 @@ const getFood = (req, res) => {
     if (error) {
       throw error;
     }
-
-pool.on('error', (err) => {
-  console.error('An idle client has experienced an error', err.stack)
-})
-
     res.status(200).json({
       status: 'sucess',
       requestTime: req.requestTime,
@@ -29,9 +24,9 @@ pool.on('error', (err) => {
   });
 };
 
-const getFoodBYId = (req, res) => {
+const getFoodById = (req, res) => {
   const reqId = parseInt(request.params.id);
-  pool.query('SELECT * FROM users WHERE id = $1', [reqId], (error, results) => {
+  pool.query('SELECT * FROM food WHERE id = $1', [reqId], (error, results) => {
     if (error) {
       throw error;
     }
@@ -46,7 +41,7 @@ const getFoodBYId = (req, res) => {
 const newFood = (req, res) => {
   const { dish, country } = req.body;
   pool.query(
-    'INSERT INTO users (dish, country) VALUES ($1, $2)',
+    'INSERT INTO food (dish, country) VALUES ($1, $2)',
     [dish, country],
     (error, results) => {
       if (error) {
@@ -62,7 +57,7 @@ const updateFood = (req, res) => {
   const { dish, country } = req.body;
 
   pool.query(
-    'UPDATE users SET food = $1, country = $2 WHERE id = $3',
+    'UPDATE food SET dish = $1, country = $2 WHERE id = $3',
     [dish, country, reqId],
     (error, results) => {
       if (error) {
@@ -85,6 +80,6 @@ const deleteFood = (req, res) => {
 };
 
 app.route('/food').get(getFood).post(newFood);
-app.route('/food/:id').get(getFoodBYId).put(updateFood).delete(deleteFood);
+app.route('/food/:id').get(getFoodById).put(updateFood).delete(deleteFood);
 
 module.exports = app;
