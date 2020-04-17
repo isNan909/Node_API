@@ -13,8 +13,8 @@ psql -d postgres -U api_user;
 
 CREATE TABLE food (
   ID SERIAL PRIMARY KEY,
-  Dish VARCHAR(255) NOT NULL,
-  Country VARCHAR(255) NOT NULL
+  Dish VARCHAR(30) NOT NULL,
+  Country VARCHAR(30) NOT NULL
 );
 
 

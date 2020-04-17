@@ -11,6 +11,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+// Get all food
 const getFood = (req, res) => {
   pool.query('SELECT * FROM food', (error, results) => {
     if (error) {
@@ -24,8 +25,9 @@ const getFood = (req, res) => {
   });
 };
 
+// Get food by id
 const getFoodById = (req, res) => {
-  const reqId = parseInt(request.params.id);
+  const reqId = parseInt(req.params.id);
   pool.query('SELECT * FROM food WHERE id = $1', [reqId], (error, results) => {
     if (error) {
       throw error;
@@ -38,6 +40,7 @@ const getFoodById = (req, res) => {
   });
 };
 
+// Create food
 const newFood = (req, res) => {
   const { dish, country } = req.body;
   pool.query(
@@ -47,15 +50,15 @@ const newFood = (req, res) => {
       if (error) {
         throw error;
       }
-      res.status(201).send(`User added with ID: ${result.insertId}`);
+      res.status(201).send(`New food added`);
     }
   );
 };
 
+// Update food
 const updateFood = (req, res) => {
-  const reqId = parseInt(request.params.id);
+  const reqId = parseInt(req.params.id);
   const { dish, country } = req.body;
-
   pool.query(
     'UPDATE food SET dish = $1, country = $2 WHERE id = $3',
     [dish, country, reqId],
@@ -70,7 +73,6 @@ const updateFood = (req, res) => {
 
 const deleteFood = (req, res) => {
   const reqId = parseInt(req.params.id);
-
   pool.query('DELETE FROM food WHERE id = $1', [reqId], (error, results) => {
     if (error) {
       throw error;
