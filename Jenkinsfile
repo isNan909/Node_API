@@ -9,25 +9,21 @@ pipeline {
                 sh 'docker --version'
             }
         }
-        stage('Building docker image') {
-            steps{
-                script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                }
-            }   
-        }
-        stage('Deploy docker image') {
-            steps{
-                script {
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push()
-                    }
-                }
+        stage('Docker Build') {
+            agent any
+            steps {
+                sh 'docker build -t shanem/spring-petclinic:latest .'
             }
         }
-        stage('Cleaning up') {
-            steps{
-                sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
+        stage('Docker Push') {
+            agent any
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+                    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+                    sh 'docker push shanem/spring-petclinic:latest'
+                }
             }
         }
     }
