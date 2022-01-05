@@ -41,6 +41,7 @@ node {
     }
 
     stage('Helm Deploy') {
+        sh 'curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash'
         sh "helm install --upgrade codeway helm/ -f helm/values.yaml --set image.tag=${env.BUILD_NUMBER}"
     }
 }
