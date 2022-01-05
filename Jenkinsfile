@@ -43,7 +43,7 @@ node {
     stage('Helm Deploy') {
         sh 'wget https://get.helm.sh/helm-v3.7.2-linux-amd64.tar.gz'
         sh 'tar zxvf helm-v3.7.2-linux-amd64.tar.gz'
-        sh "linux-amd64/helm install --upgrade codeway helm/ -f helm/values.yaml --set image.tag=${env.BUILD_NUMBER}"
+        sh "linux-amd64/helm upgrade --install codeway helm/ -f helm/values.yaml --set image.tag=${env.BUILD_NUMBER}"
     }
 }
 
