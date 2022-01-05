@@ -4,7 +4,6 @@ node {
     stage('Update Kubeconfig') {
         withAWS(credentials: 'myaws', region: 'us-east-1') {
             sh 'aws eks --region us-east-1 update-kubeconfig --name CodeWay'
-            sh 'kubectl cluster-info'
         }
     }
 
@@ -39,6 +38,10 @@ node {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }
+    }
+
+    stage('Helm Deploy') {
+        sh "helm install --upgrade codeway helm/ -f helm/values.yaml --set image.tag=${env.BUILD_NUMBER}"
     }
 }
 
