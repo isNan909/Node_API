@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("Herenn/Node_API")
+        app = docker.build("herenn/node_api")
     }
 
     stage('Test image') {
