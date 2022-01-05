@@ -15,8 +15,6 @@ pipeline {
                 sh 'docker build -t shanem/spring-petclinic:latest .'
             }
         }
-      }
-    }
         stage('Docker Push') {
             agent any
             steps {
