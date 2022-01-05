@@ -17,7 +17,7 @@
   agentListenerEnabled: true
   agentListenerPort: 50000
   agentListenerHostPort:
-  agentListenerNodePort:
+  agentListenerNodePort: 32000
   disabledAgentProtocols:
     - JNLP-connect
     - JNLP2-connect
