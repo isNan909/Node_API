@@ -2,8 +2,10 @@ node {
     def app
 
     stage('Update Kubeconfig') {
-        sh 'aws eks --region us-east-1 update-kubeconfig --name CodeWay'
-        sh 'kubectl cluster-info'
+        withAWS(credentials: 'myaws', region: 'us-east-1') {
+            sh 'aws eks --region us-east-1 update-kubeconfig --name CodeWay'
+            sh 'kubectl cluster-info'
+        }
     }
 
     stage('Clone repository') {
