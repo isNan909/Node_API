@@ -41,8 +41,9 @@ node {
     }
 
     stage('Helm Deploy') {
-        sh 'curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash'
-        sh "/usr/local/bin/helm install --upgrade codeway helm/ -f helm/values.yaml --set image.tag=${env.BUILD_NUMBER}"
+        sh 'wget https://get.helm.sh/helm-v3.7.2-linux-amd64.tar.gz'
+        sh 'tar zxvf helm-v3.7.2-linux-amd64.tar.gz'
+        sh "linux-amd64/helm install --upgrade codeway helm/ -f helm/values.yaml --set image.tag=${env.BUILD_NUMBER}"
     }
 }
 
