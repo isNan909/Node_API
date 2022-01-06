@@ -3,7 +3,7 @@ node {
 
     stage('Update Kubeconfig') {
         withAWS(credentials: 'myaws', region: 'us-east-1') {
-            sh 'aws eks --region us-east-1 update-kubeconfig --name CodeWay'
+            sh 'aws eks --region us-east-1 update-kubeconfig --name Test'
         }
     }
 
