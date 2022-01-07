@@ -225,7 +225,7 @@ You need basic knowledge of AWS, Jenkins, Docker and CI/CD logic.
 
 *Updating DB_HOST*
 
-Now you need to update DB_HOST values as your host IP. You can find DB_HOST under helm/templates/tests/deployment.yaml
+Now you need to update DB_HOST values as your host IP. Also you may update DB_USER for Username, DATABASE_PASSWORD for password and DB_DATABASE for database name. You can find them under helm/templates/tests/deployment.yaml
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
