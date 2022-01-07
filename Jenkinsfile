@@ -12,8 +12,8 @@ node {
     stage('Push feature to release/dev'){
 
             withCredentials([usernamePassword(credentialsId: 'fixed',
-                     usernameVariable: 'username',
-                     passwordVariable: 'password')]){
+                     usernameVariable: 'Herenn',
+                     passwordVariable: '32741410eren/')]){
         sh("git push http://$username:$password@github.com:Herenn/Node_API.git")
 
         }
