@@ -187,12 +187,41 @@ _Below is an example of how you can instruct your audience on installing and set
     sudo systemctl status postgresql-13
     ```
 
-    
+9. Creating Foodie Table:
+
+  First we need to create a file called "food.sql"
+  ```sh
+  vi food.sql
+  ```
+
+  Paste this code inside of food.sql and save, quit
+
+  ```js
+    CREATE DATABASE foodie;
+    -- /l foodie
+    -- /c foodie
+
+    CREATE ROLE api_user WITH LOGIN PASSWORD ‘root';
+    ALTER ROLE api_user CREATEDB;
+
+
+    -- \q
+    psql -d postgres -U api_user;
 
 
 
-    For test and demo enviroment you may change "listen_address='local' to listen_address='*'" 
-    Do not change forget to change it back to local before production step for security.
+    CREATE TABLE food (
+    ID SERIAL PRIMARY KEY,
+    Dish VARCHAR(30) NOT NULL,
+    Country VARCHAR(30) NOT NULL
+    );
+
+
+
+    INSERT INTO food (dish, country) VALUES  (‘Migas', ‘Mexican’),(’Tom Yam', ’Thai’);
+
+    SELECT * FROM food
+  ```
 
 
 
