@@ -43,15 +43,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This is my first project for CodeWay. But who is CodeWay? Lets hear it from them;
+This is my first project for CodeWay. 
 
-"We build mobile apps and games that millions of users love. We curate bold ideas and transform them into fast-growing products - from concept, through development, to global market expansion.
+The purpose of this assignment is to create an applicable CI & CD pipeline
+for an application that runs on top of a Kubernetes cluster.
 
-With endless passion and years of experience in mobile industry, our products have reached over 65 million users across 160 countries in 6 continents - and we are just getting started!
-
-People are at the heart and soul of everything we do. We work in autonomous teams formed around passionate & highly capable people from different backgrounds and disciplines. We value supporting each other and sharing our experience regardless of what particular project we’re working on."
-
-This project is a CI/CD
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -59,7 +55,7 @@ This project is a CI/CD
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This is a list of programs to bootstrap your project.
 
 * [Jenkins](https://www.jenkins.io/)
 * [Docker](https://www.docker.com/)
@@ -67,7 +63,6 @@ This section should list any major frameworks/libraries used to bootstrap your p
 * [AWS EKS](https://aws.amazon.com/eks/)
 * [Helm](https://helm.sh/)
 * [PostgreSQL](https://www.postgresql.org/)
-* [Readme Template](https://github.com/othneildrew/Best-README-Template)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -76,31 +71,115 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- GETTING STARTED -->
 ## Getting Started
 
-First of all lets Fork repository and begin.
+First, you need to Fork repository to your GitHub repositoty and create AWS Account.
 
 ### Prerequisites
 
-You need to know basic knowledge of AWS, Jenkins, Docker and CI/CD logic.
-
-Also you will need an AWS Account.
+You need basic knowledge of AWS, Jenkins, Docker and CI/CD logic.
 
 ### Installation
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Get in to your AWS Account [https://console.aws.amazon.com](https://console.aws.amazon.com)
+2. Launch an EC2 instance. You may use t2.micro for free tier but i suggest you to use t3.micro because of Jenkins.
+3. Create an EKS Cluster and then create 2 nodes.
+4. SSH to your EC2 instance.
+5. Run update
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   sudo yum update
    ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+5. Install Jenkins:
+    ```sh
+    sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+    sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+    sudo yum upgrade
+    sudo yum install epel-release java-11-openjdk-devel
+    sudo yum install jenkins
+    sudo systemctl daemon-reload
+    ```
+    You can start the Jenkins service with the command:
+    ```sh
+    sudo systemctl start jenkins
+    ```
+    Get your Admin Password and Copy it:
+    ```sh
+    sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+    ```
+    Browse to http://localhost:8080 (or whichever port you configured for Jenkins when installing it) and wait until the Unlock Jenkins page appears.
+
+6. Install Docker:
+
+    ```sh
+    sudo yum install -y yum-utils
+    sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+    ```
+
+    Install Docker Engine:
+    ```sh
+    sudo yum install docker-ce docker-ce-cli containerd.io 
+    ```
+
+    To install a specific version of Docker Engine, list the available versions in the repo, then select and install:
+    ```sh
+    yum list docker-ce --showduplicates | sort -r
+    ```
+    ```sh
+    sudo yum install docker-ce-<VERSION_STRING> docker-ce-cli-<VERSION_STRING> containerd.io
+    ```
+
+    Start Docker.
+    ```sh
+    sudo systemctl start docker
+    ```
+
+7. Install Helm:
+
+    ```sh
+    curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+    $ chmod 700 get_helm.sh
+    $ ./get_helm.sh
+    ```
+
+8. Install PostgreSQL:
+
+    Add PostgreSQL Yum Repository
+    ```sh
+    sudo tee /etc/yum.repos.d/pgdg.repo<<EOF
+    [pgdg13]
+    name=PostgreSQL 13 for RHEL/CentOS 7 - x86_64
+    baseurl=https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-7-x86_64
+    enabled=1
+    gpgcheck=0
+    EOF
+    ```
+
+    Command to install PostgreSQL on Amazon Linux 2:
+    ```sh
+    sudo yum install postgresql13 postgresql13-server
+    ```
+
+    Initial database configurations:
+
+    ```sh
+    sudo /usr/pgsql-13/bin/postgresql-13-setup initdb
+    ```
+
+    Enable and Start PostgreSQL Service:
+    ```sh
+    sudo systemctl start postgresql-13
+    sudo systemctl enable postgresql-13
+    ```
+
+    Check the status of the Service:
+    ```sh
+    sudo systemctl status postgresql-13
+    ```
+
+4. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
