@@ -47,4 +47,3 @@ node {
             sh "linux-amd64/helm upgrade --install codeway helm/ -f helm/values.yaml --set image.tag=${env.BUILD_NUMBER}"
         }
     }
-}

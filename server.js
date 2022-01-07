@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const app = require('../Node_API/app');
+const app = require('../app');
 
 const port = process.env.PORT;
 app.listen(port, () => {
