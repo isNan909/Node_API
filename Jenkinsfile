@@ -16,6 +16,7 @@ node {
             sh 'echo "Tests passed"'
         }
     }
+    
 =======
     stage('Update Kubeconfig') {
         withAWS(credentials: 'myaws', region: 'us-east-1') {
