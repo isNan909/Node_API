@@ -79,11 +79,10 @@ You need basic knowledge of AWS, Jenkins, Docker and CI/CD logic.
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
 1. Get in to your AWS Account [https://console.aws.amazon.com](https://console.aws.amazon.com)
 2. Launch an EC2 instance. You may use t2.micro for free tier but i suggest you to use t3.micro because of Jenkins.
-3. Create an EKS Cluster and then create 2 nodes.
+3. Create an EKS Cluster and then create 2 nodes. You need to change "update-kubeconfig --name Test" to your cluster name.
 4. SSH to your EC2 instance.
 5. Run update
    ```sh
@@ -224,7 +223,9 @@ _Below is an example of how you can instruct your audience on installing and set
   ```
 
 
+*Updating DB_HOST*
 
+Now you need to update DB_HOST values as your host IP. You can find DB_HOST under helm/templates/tests/deployment.yaml
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -235,23 +236,5 @@ _Below is an example of how you can instruct your audience on installing and set
 Hasan Eren Çiftçi - [LinkedIn](https://www.linkedin.com/in/hasanerenciftci/) - erenciftci@hotmail.com.tr
 
 Project Link: [Original Repository](https://github.com/Herenn/Node_API)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
