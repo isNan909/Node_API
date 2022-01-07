@@ -71,7 +71,7 @@ This is a list of programs to bootstrap your project.
 <!-- GETTING STARTED -->
 ## Getting Started
 
-First, you need to Fork repository to your GitHub repositoty and create AWS Account.
+First, you need to fork repository to your GitHub repository and create AWS Account.
 
 ### Prerequisites
 
@@ -109,8 +109,16 @@ _Below is an example of how you can instruct your audience on installing and set
     ```
     Browse to http://localhost:8080 (or whichever port you configured for Jenkins when installing it) and wait until the Unlock Jenkins page appears.
 
+    On Jenkins create Multibranch Pipeline and under Branch Sources click "Add Source" then select GitHub.
+    After adding credentials paste Repository HTTPS URL.
+    You need to add "Filter by name (with wildcards)" and Include "release/dev release/prod"
+
+    Also you need to download Docker plugin and add Credentials for Docker.
+    Under Manage Jenkins go to Manage Nodes and Clouds section and on Configure Clouds section add Docker.
+
 6. Install Docker:
 
+    Add Docker Repository:
     ```sh
     sudo yum install -y yum-utils
     sudo yum-config-manager \
@@ -179,7 +187,15 @@ _Below is an example of how you can instruct your audience on installing and set
     sudo systemctl status postgresql-13
     ```
 
-4. 
+    
+
+
+
+    For test and demo enviroment you may change "listen_address='local' to listen_address='*'" 
+    Do not change forget to change it back to local before production step for security.
+
+
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -210,23 +226,3 @@ Use this space to list resources you find helpful and would like to give credit 
 * [React Icons](https://react-icons.github.io/react-icons/search)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
-
-
