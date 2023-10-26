@@ -1,0 +1,25 @@
+version: '3'  # Docker Compose sürümü
+
+services:
+  web:
+    image: nginx  # Kullanılacak Docker imajı
+    ports:
+      - "80:80"  # Dış port ile iç port eşlemesi (host:container)
+    volumes:
+      - ./html:/usr/share/nginx/html  # Host ve konteyner arasında dosya paylaşımı
+
+  app:
+    image: basak-app 1.0 # Özelleştirilmiş uygulama Docker imajı
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./app:/app
+    environment:
+      - DEBUG=True  # Ortam değişkenleri
+
+  db:
+    image: postgres:latest  # PostgreSQL Docker imajı
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydb
