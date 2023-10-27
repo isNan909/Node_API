@@ -3,10 +3,10 @@ name: Docker CI/CD
 on:
   push:
     branches:
-      - main  # Ana dalı değiştirdiğinizde işlemi başlatır
+      - new_branch 
   pull_request:
     branches:
-      - main  # Ana dalda bir çekme isteği açtığınızda işlemi başlatır
+      - new_branch 
 
 jobs:
   build:
