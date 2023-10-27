@@ -1,0 +1,22 @@
+name: Docker CI/CD
+
+on:
+  push:
+    branches:
+      - new_branch 
+  pull_request:
+    branches:
+      - new_branch 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source 
+      uses: actions/checkout@v2
+
+    - name: Docker Build ve Test
+      run: |
+        docker build ./Node_API basak-app 1.0 
+        
