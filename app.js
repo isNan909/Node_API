@@ -10,6 +10,9 @@ app.use(express.json());
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+app.get('/', (req, res) => {
+  res.send('Node API is running');
+});
 
 // Get all food
 const getFood = (req, res) => {
